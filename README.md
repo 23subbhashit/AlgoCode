@@ -99,6 +99,56 @@ print("Linked List : ")
 ans = f(dummy)
 print(ans)      
 ```
+7>
+```
+class ll:
+    def __init__(self,data,nxt=None):
+        self.data=data
+        self.next=nxt
+
+def f(head):
+    slow = fast = head
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        print(slow.data,fast.data)
+        if slow==fast:
+            start = head
+            while start.next!=slow.next:
+                start=start.next
+                slow=slow.next
+            slow.next= None
+            break
+    print("Linked List : ")
+    printll(head)
+    
+
+def printll(head):
+    cur = head
+    while cur:
+        print(cur.data)
+        cur=cur.next
+        
+n = int(input("Enter No. of node :"))
+temp = dummy = None
+cn = None
+for i in range(n):
+    a = int(input())
+    node = ll(a)
+    if temp is None:
+        temp = node
+        dummy = node
+    else:
+        if i==2:
+            cn = node 
+        
+        temp.next = node
+        temp = temp.next
+#create dummy cycle    
+temp.next = cn
+f(dummy)     
+```
+
 8>
 ```
 n = int(input())
