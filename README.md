@@ -204,3 +204,16 @@ for j in range(1,n):
         i=j
 print("Max : ",m)
 ```
+
+15>
+```
+n = int(input("Enter No. of ele : "))
+k = int(input("Enter Gap days : "))
+A = [int(x) for x in input("Enter Array : ").split()]
+m = float('-inf')
+i =0
+for j in range(k,n):
+    m = max(m,A[j]-A[i])
+    i+=1
+print("Max : ",m)
+```
