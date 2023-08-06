@@ -182,11 +182,9 @@ def windowmax(arr,n,res,k):
         if i>=k-1:
             res.append(arr[window[0]])
     return res
-        
-        
-    
-    
-
+```
+14>
+```
 n = int(input("Enter the number of elements"))
 arr = [int(x) for x in input("Enter array").split()]
 k = int(input("Enter the Window Size"))
@@ -205,5 +203,4 @@ for j in range(1,n):
     if A[j]<A[i]:
         i=j
 print("Max : ",m)
-
 ```
