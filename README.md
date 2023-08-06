@@ -167,3 +167,30 @@ else:
 
 
 ```
+9>
+```
+from collections import deque
+
+def windowmax(arr,n,res,k):
+    window = deque()
+    for i in range(n):
+        while window and window[-1]<=i-k:
+            window.popleft()
+        while window and arr[i]>arr[window[-1]]:
+            window.pop()
+        window.append(i)
+        if i>=k-1:
+            res.append(arr[window[0]])
+    return res
+        
+        
+    
+    
+
+n = int(input("Enter the number of elements"))
+arr = [int(x) for x in input("Enter array").split()]
+k = int(input("Enter the Window Size"))
+res = []
+ans = windowmax(arr,n,res,k)
+print(ans)
+```
