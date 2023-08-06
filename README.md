@@ -229,3 +229,20 @@ for j in range(k,n):
 print("Max : ",m)
 
 ```
+18>
+```
+n = int(input("Enter length of array : "))
+arr = [int(x) for x in input("Enter array : ").split()] 
+ps = [arr[0]]
+for i in range(1,n):
+    ps.append(ps[-1]+arr[i])
+
+i = 0
+m = float('-inf')
+for j in range(1,n):
+    m = max(m,ps[j]-ps[i])
+    if ps[j]<ps[i]:
+        i=j
+print("Max Subarray Sum : ",m)
+    
+```
