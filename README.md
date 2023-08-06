@@ -99,3 +99,21 @@ print("Linked List : ")
 ans = f(dummy)
 print(ans)      
 ```
+8>
+```
+n = int(input())
+arr = [int(x) for x in input().split()]
+s= []
+j=0
+for i in range(1,n+1):
+    s.append(i)
+    while s and arr[j]==s[-1]:
+        s.pop()
+        j+=1
+if len(s)==0:
+    print("Stack Sequence!!")
+else:
+    print("Nahi h BC")
+
+
+```
