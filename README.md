@@ -194,3 +194,16 @@ res = []
 ans = windowmax(arr,n,res,k)
 print(ans)
 ```
+14>
+```
+n = int(input("Enter No. of ele : "))
+A = [int(x) for x in input("Enter Array : ").split()]
+m = float('-inf')
+i =0
+for j in range(1,n):
+    m = max(m,A[j]-A[i])
+    if A[j]<A[i]:
+        i=j
+print("Max : ",m)
+
+```
