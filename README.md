@@ -246,3 +246,21 @@ for j in range(1,n):
 print("Max Subarray Sum : ",m)
     
 ```
+
+19>
+```
+arr = [int(x) for x in input("Enter Array elements : ").split()]
+k = int(input("Enter Subarray Length : "))
+max_sum =0
+curr = 0
+
+for i in range(k):
+    max_sum += arr[i]
+    curr += arr[i]
+
+for i in range(k,len(arr)):
+    curr += arr[i]-arr[i-k]
+    if curr > max_sum:
+        max_sum = curr
+print(max_sum)
+```
