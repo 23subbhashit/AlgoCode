@@ -356,7 +356,25 @@ for i in range(k,len(arr)):
 print(max_sum)
 
 ```
-21>
+20>
+```
+n = int(input("Enter length of array : "))
+arr = [int(x) for x in input("Enter array : ").split()]
+l= int(input("Enter number of days : "))
+ps = [arr[0]]
+for i in range(1,n):
+    ps.append(ps[-1]+arr[i])
+
+i = 0
+m = float('-inf')
+for j in range(l,n):
+    m = max(m,ps[j]-ps[i])
+    if ps[j-l+1]<ps[i]:
+        i=j-l+1
+print("Max Subarray Sum : ",m)   
+
+```
+22>
 ```
 # Fibonacci Series using
 # Optimized Method
