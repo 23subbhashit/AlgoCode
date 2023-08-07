@@ -207,6 +207,23 @@ res = []
 ans = windowmax(arr,n,res,k)
 print(ans)
 ```
+10>
+```
+n = int(input("Enter length of Array : "))
+arr = [int(x) for x in input("Enter Array : ").split()]
+ans = [-1]*n
+ans[n-1]=n
+s = [n-1]
+for i in  range(n-2,-1,-1):
+    while s and arr[s[-1]]>=arr[i]:
+        s.pop()
+    if s:
+        ans[i]=s[-1]
+    else:
+        ans[i]=n
+    s.append(i)
+print(ans)
+```
 14>
 ```
 n = int(input("Enter No. of ele : "))
