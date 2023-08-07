@@ -224,6 +224,23 @@ for i in  range(n-2,-1,-1):
     s.append(i)
 print(ans)
 ```
+11>
+```
+n = int(input("Enter length of Array : "))
+arr = [int(x) for x in input("Enter Array : ").split()]
+ans = [-1]*n
+ans[0]=-1
+s = [0]
+for i in  range(1,n):
+    while s and arr[s[-1]]<=arr[i]:
+        s.pop()
+    if s:
+        ans[i]=s[-1]
+    else:
+        ans[i]=-1
+    s.append(i)
+print(ans)
+```
 14>
 ```
 n = int(input("Enter No. of ele : "))
