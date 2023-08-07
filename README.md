@@ -374,6 +374,20 @@ for j in range(l,n):
 print("Max Subarray Sum : ",m)   
 
 ```
+21>
+```
+n = int(input("Enter n value : ")) #1000
+m = int(input("Enter Modulo Value : "))#10
+arr=[-1]*n
+arr[0]=0
+arr[1]=1
+for p in range(2,6*m+2):
+    arr[p]=(arr[p-1]+arr[p-2])%m
+    if arr[p-1]==0 and arr[p]==1:
+        break
+p-=1
+print(arr[n%p])
+```
 22>
 ```
 # Fibonacci Series using
