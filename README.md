@@ -1,6 +1,54 @@
 # AlgoCode
 Algorithm Class Codes
 ## Assignment 1
+1>
+```
+def merge(A,low,mid,high):
+    l = A[low:mid+1]
+    r = A[mid+1:high+1]
+    i=j=0
+    k=low
+    swaps=0
+    while(i<len(l) and j<len(r)):
+        if l[i]<=r[j]:
+            A[k]=l[i]
+            i+=1
+        else:
+            swaps+=mid+1-low+i
+            A[k]=r[j]
+            j+=1
+    while i<len(l):
+        A[k]=l[i]
+        k+=1
+        i+=1
+    while j<len(r):
+        A[k]=r[j]
+        k+=1
+        j+=1
+    return swaps
+def CIP(A,l,r):
+    c=0
+    if l<r:
+        mid = (l+r)//2
+        c+=CIP(A,l,mid)
+        c+=CIP(A,mid+1,r)
+        c+=merge(A,l,mid,r)
+    return c
+        
+s = input("Enter String : ")
+n = len(s)
+A = [-1]*n
+c = 0
+for i in range(n):
+    if s[i]=='1': c+=1
+    else: c-=1
+    A[i]=c
+
+temp = CIP(A,0,n-1)
+print((n*(n-1)//2)-temp)
+
+```
+
 2>
 ```
 def findLongestSub(bin1):
