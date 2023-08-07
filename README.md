@@ -1,6 +1,46 @@
 # AlgoCode
 Algorithm Class Codes
 ## Assignment 1
+2>
+```
+def findLongestSub(bin1):
+	n = len(bin1)
+	# To store sum.
+	s= 0
+	# To store first occurrence of each
+	# sum value.
+	prevSum = {i:0 for i in range(n)}
+	# To store maximum length.
+	maxlen = 0
+	# To store current substring length.
+	for i in range(n):
+		# Add 1 if current character is 1
+		# else subtract 1.
+		if (bin1[i] == '1'):
+			s += 1
+		else:
+			s -= 1
+		# If sum is positive, then maximum
+		# length substring is bin1[0..i]
+		if (s > 0):
+			maxlen = i + 1
+		# If sum is negative, then maximum
+		# length substring is bin1[j+1..i], where
+		# sum of substring bin1[0..j] is sum-1.
+		elif (s <= 0):
+			if ((s - 1) in prevSum):
+				currlen = i - prevSum[s - 1]
+				maxlen = max(maxlen, currlen)
+		# Make entry for this sum value in hash
+		# table if this value is not present.
+		if ((s) not in prevSum):
+			prevSum[s] = i
+	return maxlen
+# Driver code
+bin1 = "1010"
+print(findLongestSub(bin1))
+
+```
 3>
 ```
 s = input("Enter Binary String : ")
