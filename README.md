@@ -1,6 +1,23 @@
 # AlgoCode
 Algorithm Class Codes
 ## Assignment 1
+3>
+```
+s = input("Enter Binary String : ")
+c=len(s)
+m = 0
+t = [-1]*(2*len(s))
+for i in range(len(s)):
+    if s[i]=='1': c+=1
+    else :
+        c-=1
+    if t[c]<0 and c==len(s): t[c]=-1
+    else: t[c]=i
+    m = max(m,i-t[c])
+print(m)
+    
+```
+
 4> 
 ```
 def f(s):
