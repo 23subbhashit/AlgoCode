@@ -501,7 +501,7 @@ print(fib(100,10))
 # A utility function to multiply two
 # matrices a[][] and b[][]. Multiplication
 # result is stored back in b[][]
-def multiply(a, b):
+def multiply(a, b,m):
 	
 	# Creating an auxiliary matrix
 	# to store elements of the
@@ -513,6 +513,7 @@ def multiply(a, b):
 			mul[i][j] = 0;
 			for k in range(3):
 				mul[i][j] += a[i][k] * b[k][j];
+			mul[i][j]=mul[i][j]%m
 
 	# storing the multiplication
 	# result in a[][]
@@ -523,7 +524,7 @@ def multiply(a, b):
 
 # Function to compute F raise
 # to power n-2.
-def power(F, n):
+def power(F, n,m):
 
 	M = [[1, 1, 1,1], [1, 0, 0,0], [0, 1, 0,0],[0,0,0,1]]
 
@@ -532,12 +533,12 @@ def power(F, n):
 	if (n == 1):
 		return F[0][0] + F[0][1];
 
-	power(F, int(n / 2));
+	power(F, int(n / 2),m);
 
-	F = multiply(F, F);
+	F = multiply(F, F,m);
 
 	if (n % 2 != 0):
-		F = multiply(F, M);
+		F = multiply(F, M,m);
 
 	# Multiply it with initial values i.e
 	# with F(0) = 0, F(1) = 1, F(2) = 1
@@ -549,14 +550,85 @@ def power(F, n):
 # f(n) = f(n-1) + f(n-2) + f(n-3), n>=3
 # Base Cases :
 # f(0) = 0, f(1) = 1, f(2) = 1
-def findNthTerm(n):
+def findNthTerm(n,m):
 	F = [[1, 1, 1,1], [1, 0, 0,0], [0, 1, 0,0],[0,0,0,1]]
 
-	return power(F, n - 2);
+	return power(F, n - 2,m);
 
 # Driver code
-n = 5;
-
+n = 5
+m = 10
 print("F(5) is",
-	findNthTerm(n))
+	findNthTerm(n,m))
+```
+25>
+```
+# Python3 program to find value of f(n)
+# where f(n) is defined as
+# F(n) = F(n-1) + F(n-2) + F(n-3), n >= 3
+# Base Cases :
+# F(0) = 0, F(1) = 1, F(2) = 1
+
+# A utility function to multiply two
+# matrices a[][] and b[][]. Multiplication
+# result is stored back in b[][]
+def multiply(a, b,m):
+	
+	# Creating an auxiliary matrix
+	# to store elements of the
+	# multiplication matrix
+	mul = [[0 for x in range(3)]
+			for y in range(3)];
+	for i in range(3):
+		for j in range(3):
+			mul[i][j] = 0;
+			for k in range(3):
+				mul[i][j] += a[i][k] * b[k][j];
+			mul[i][j]=mul[i][j]%m
+
+	# storing the multiplication
+	# result in a[][]
+	for i in range(3):
+		for j in range(3):
+			a[i][j] = mul[i][j] # Updating our matrix
+	return a;
+
+# Function to compute F raise
+# to power n-2.
+def power(F, n,m):
+
+	M = [[2,0,-3], [1, 0, 0], [0, 1, 0]]
+
+	# Multiply it with initial values i.e
+	# with F(0) = 0, F(1) = 1, F(2) = 1
+	if (n == 1):
+		return F[0][0] + F[0][1];
+
+	power(F, int(n / 2),m);
+
+	F = multiply(F, F,m);
+
+	if (n % 2 != 0):
+		F = multiply(F, M,m);
+
+	# Multiply it with initial values i.e
+	# with F(0) = 0, F(1) = 1, F(2) = 1
+	return F[0][0] + F[0][1] ;
+
+# Return n'th term of a series defined
+# using below recurrence relation.
+# f(n) is defined as
+# f(n) = f(n-1) + f(n-2) + f(n-3), n>=3
+# Base Cases :
+# f(0) = 0, f(1) = 1, f(2) = 1
+def findNthTerm(n,m):
+	F = [[2,0,-3], [1, 0, 0], [0, 1, 0]]
+
+	return power(F, n - 2,m);
+
+# Driver code
+n = 5
+m = 10
+print("F(5) is",
+	findNthTerm(n,m));
 ```
