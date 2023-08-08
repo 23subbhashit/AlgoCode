@@ -565,74 +565,57 @@ print(fib(100,10))
 ```
 24>
 ```
-# Python3 program to find value of f(n)
-# where f(n) is defined as
-# F(n) = F(n-1) + F(n-2) + F(n-3), n >= 3
-# Base Cases :
-# F(0) = 0, F(1) = 1, F(2) = 1
+def matrix_multiply_mod(A, B, m):
+    result = [[0 for _ in range(4)] for _ in range(4)]
+    for i in range(4):
+        for j in range(4):
+            for k in range(4):
+                result[i][j] = (result[i][j] + A[i][k] * B[k][j]) % m
+    return result
 
-# A utility function to multiply two
-# matrices a[][] and b[][]. Multiplication
-# result is stored back in b[][]
-def multiply(a, b,m):
-	
-	# Creating an auxiliary matrix
-	# to store elements of the
-	# multiplication matrix
-	mul = [[0 for x in range(4)]
-			for y in range(4)];
-	for i in range(4):
-		for j in range(4):
-			mul[i][j] = 0;
-			for k in range(3):
-				mul[i][j] += a[i][k] * b[k][j];
-			mul[i][j]=mul[i][j]%m
+def matrix_power_mod(M, exponent, m):
+    if exponent == 1:
+        return M
+    if exponent % 2 == 0:
+        half_power = matrix_power_mod(M, exponent // 2, m)
+        return matrix_multiply_mod(half_power, half_power, m)
+    else:
+        half_power = matrix_power_mod(M, (exponent - 1) // 2, m)
+        return matrix_multiply_mod(matrix_multiply_mod(half_power, half_power, m), M, m)
 
-	# storing the multiplication
-	# result in a[][]
-	for i in range(4):
-		for j in range(4):
-			a[i][j] = mul[i][j]; # Updating our matrix
-	return a;
+def compute_fn(n, m):
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    if n == 2:
+        return 2
 
-# Function to compute F raise
-# to power n-2.
-def power(F, n,m):
+    transformation_matrix = [
+        [1, 1, 1, 1],
+        [1, 0, 0, 0],
+        [0, 1, 0, 0],
+        [0, 0, 0, 1]
+    ]
 
-	M = [[1, 1, 1,1], [1, 0, 0,0], [0, 1, 0,0],[0,0,0,1]]
+    powered_matrix = matrix_power_mod(transformation_matrix, n - 2, m)
+    initial_vector = [2, 1, 0, 1]  # Adjusted initial vector
+    result_vector = [0, 0, 0, 0]
+    for i in range(4):
+        for j in range(4):
+            result_vector[i] = (result_vector[i] + powered_matrix[i][j] * initial_vector[j]) % m
 
-	# Multiply it with initial values i.e
-	# with F(0) = 0, F(1) = 1, F(2) = 1
-	if (n == 1):
-		return F[0][0] + F[0][1];
+    return (result_vector[0]) % m  # No need to add 1 here as it was already considered in the transformation
 
-	power(F, int(n / 2),m);
+def main():
+    n = int(input("Enter n: "))
+    m = int(input("Enter m: "))
+    result = compute_fn(n, m)
+    print("F({}) % {} = {}".format(n, m, result))
 
-	F = multiply(F, F,m);
+if __name__ == "__main__":
+    main()
 
-	if (n % 2 != 0):
-		F = multiply(F, M,m);
-
-	# Multiply it with initial values i.e
-	# with F(0) = 0, F(1) = 1, F(2) = 1
-	return F[0][0] + F[0][1] ;
-
-# Return n'th term of a series defined
-# using below recurrence relation.
-# f(n) is defined as
-# f(n) = f(n-1) + f(n-2) + f(n-3), n>=3
-# Base Cases :
-# f(0) = 0, f(1) = 1, f(2) = 1
-def findNthTerm(n,m):
-	F = [[1, 1, 1,1], [1, 0, 0,0], [0, 1, 0,0],[0,0,0,1]]
-
-	return power(F, n - 2,m);
-
-# Driver code
-n = 5
-m = 10
-print("F(5) is",
-	findNthTerm(n,m))
 ```
 25>
 ```
