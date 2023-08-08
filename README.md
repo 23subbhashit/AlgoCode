@@ -508,8 +508,8 @@ def multiply(a, b):
 	# multiplication matrix
 	mul = [[0 for x in range(4)]
 			for y in range(4)];
-	for i in range(3):
-		for j in range(3):
+	for i in range(4):
+		for j in range(4):
 			mul[i][j] = 0;
 			for k in range(3):
 				mul[i][j] += a[i][k] * b[k][j];
@@ -558,6 +558,5 @@ def findNthTerm(n):
 n = 5;
 
 print("F(5) is",
-	findNthTerm(n));
-
+	findNthTerm(n))
 ```
