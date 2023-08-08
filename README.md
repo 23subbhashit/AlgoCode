@@ -343,7 +343,7 @@ def bs(arr,s,l,h,key):
     return ans
 
 n = int(input("Enter Size Of Array : "))
-arr = [int(x) for x in input("Enter Array : ").split()]
+arr = [int(x) for x in input("Enter Array : ").split()] # 100 50 20 25 40
 b = [-1]*n
 s=[]
 i = 0
@@ -372,15 +372,15 @@ def bs(arr,s,l,h,key):
         mid = (l+h)>>1
         if arr[s[mid]]>key:
             ans = mid
-            l = mid+1
+            h = mid-1
             
             #print("ans : ",ans," key : ",key," stack : ",s)
         else:
-            h = mid-1
+            l = mid+1
     return ans
 
 n = int(input("Enter Size Of Array : "))
-arr = [int(x) for x in input("Enter Array : ").split()]
+arr = [int(x) for x in input("Enter Array : ").split()] # 50 20 100 40 10
 b = [-1]*n
 s=[]
 i = 0
@@ -394,7 +394,7 @@ for i in range(n-1,-1,-1):
             b[i] = n
         else:
             b[i]=s[k]
-    if not s or arr[i]<arr[s[-1]] :
+    if not s or arr[i]>arr[s[-1]] :
         s.append(i)
         top+=1
     #print(" s : ",s)
