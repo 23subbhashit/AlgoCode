@@ -364,6 +364,43 @@ while i<n:
     #print("i : ",i," b : ",b ," s : ",s)
 print(b)
 ```
+13>
+```
+def bs(arr,s,l,h,key):
+    ans = n
+    while (l<=h):
+        mid = (l+h)>>1
+        if arr[s[mid]]>key:
+            ans = mid
+            l = mid+1
+            
+            #print("ans : ",ans," key : ",key," stack : ",s)
+        else:
+            h = mid-1
+    return ans
+
+n = int(input("Enter Size Of Array : "))
+arr = [int(x) for x in input("Enter Array : ").split()]
+b = [-1]*n
+s=[]
+i = 0
+top = -1 # intially no ele
+for i in range(n-1,-1,-1):
+    if not s:
+        b[i]= n
+    else:
+        k=bs(arr,s,0,top,arr[i])
+        if k == n:
+            b[i] = n
+        else:
+            b[i]=s[k]
+    if not s or arr[i]<arr[s[-1]] :
+        s.append(i)
+        top+=1
+    #print(" s : ",s)
+    
+print(b)
+```
 14>
 ```
 n = int(input("Enter No. of ele : "))
