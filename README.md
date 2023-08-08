@@ -17,6 +17,7 @@ def merge(A,low,mid,high):
             swaps+=mid+1-low+i
             A[k]=r[j]
             j+=1
+	k+=1
     while i<len(l):
         A[k]=l[i]
         k+=1
