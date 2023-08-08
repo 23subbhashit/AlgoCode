@@ -280,7 +280,7 @@ from collections import deque
 def windowmax(arr,n,res,k):
     window = deque()
     for i in range(n):
-        while window and window[-1]<=i-k:
+        while window and window[0]<=i-k:
             window.popleft()
         while window and arr[i]>arr[window[-1]]:
             window.pop()
