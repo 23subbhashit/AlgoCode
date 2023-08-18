@@ -42,7 +42,7 @@ print(exists(arr,n))
 
 ```
 
-7>
+6>
 ```
 def exists(a,n):
     a.sort()
