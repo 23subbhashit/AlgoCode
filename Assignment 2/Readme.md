@@ -60,6 +60,20 @@ def exists(a,n):
                     j+=1
                 else:
                     k-=1
+    for i in range(n):
+        for l in range(n):
+            k = 0
+            j = n-1
+            while(k<j):
+                s = {i,j,k,l}
+                
+                if a[k]+2*a[j] == a[i]+3*a[l] and len(s)==4:
+                    print(a[i],a[j],a[k],a[l])
+                    return True
+                if a[k]+2*a[j] < a[i]+3*a[l]:
+                    k+=1
+                else:
+                    j-=1
     return False
 arr = [int(x) for x in input("Enter Array : ").split()]
 arr.sort()
