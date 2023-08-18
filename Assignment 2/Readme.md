@@ -11,7 +11,6 @@ def exists(arr,l,r,n,X):
             l+=1
         
     return False
-
 arr = [int(x) for x in input("Enter Array : ").split()]
 arr.sort()
 l = 0
@@ -20,3 +19,26 @@ X = int(input("Enter X : "))
 n = len(arr)
 print(exists(arr,l,r,n,X))
 ```
+5>
+```
+def exists(a,n):
+    a.sort()
+    for k in range(0,n):
+        l = 0
+        r = n-1
+        while(l<r):
+            if a[l]+a[r] == a[k]:
+                print(a[l],a[r],a[k])
+                return True
+            if a[l]+a[r] < a[k]:
+                l+=1
+            else:
+                r-=1
+    return False
+arr = [int(x) for x in input("Enter Array : ").split()]
+arr.sort()
+n = len(arr)
+print(exists(arr,n))
+
+```
+
