@@ -80,3 +80,42 @@ arr.sort()
 n = len(arr)
 print(exists(arr,n))
 ```
+7>
+```
+import random
+
+def find_rank(arr, l, r, rank):
+    k = partition(arr, l, r)
+    if rank == r - k + 1:
+        return k
+    if rank < r - k + 1:
+        return find_rank(arr, k + 1, r, rank)
+    else:
+        return find_rank(arr, l, k - 1, rank - (r - k + 1))
+
+def partition(arr, p, q):
+    rand_index = random.randint(p, q)%(q-p+1)+p
+    arr[p], arr[rand_index] = arr[rand_index], arr[p]
+    pivot = arr[p]
+    i, j = p + 1, q
+
+    while i <= j:
+        while i <= j and arr[i] <= pivot:
+            i += 1
+        while i <= j and arr[j] > pivot:
+            j -= 1
+        if i <= j:
+            arr[i], arr[j] = arr[j], arr[i]
+            i += 1
+            j -= 1
+
+    i -= 1
+    arr[p], arr[i] = arr[i], arr[p]
+    return i
+
+n = int(input())
+rank = int(input())
+arr = list(map(int, input().split()))
+result = find_rank(arr, 0, n - 1, rank)
+print(arr[result])
+```
