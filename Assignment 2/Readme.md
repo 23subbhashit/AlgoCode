@@ -5,7 +5,7 @@
 2>
 ![WhatsApp Image 2023-08-20 at 13 27 56](https://github.com/23subbhashit/AlgoCode/assets/43717493/92fb0aa0-4512-4c69-8608-2b1c54faab03)
 
-![WhatsApp Image 2023-08-20 at 13 27 56 (1)](https://github.com/23subbhashit/AlgoCode/assets/43717493/67311b51-7634-4513-b7d3-55ac3bb27fe5)
+![WhatsApp Image 2023-08-20 at 13 34 27](https://github.com/23subbhashit/AlgoCode/assets/43717493/396ab2ea-5da5-4948-b81d-5ed0f8bf5917)
 
 4>
 ```
