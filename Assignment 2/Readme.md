@@ -128,3 +128,34 @@ arr = list(map(int, input().split()))
 result = find_rank(arr, 0, n - 1, rank)
 print(arr[result])
 ```
+9>
+```
+def Rank(a,n,b,m,k):
+    if m+n <k or k<1: return -1
+    elif n == 0 : return b[m-k]
+    elif m == 0 : return a[n-k]
+    elif k == 1:
+        if a[n-1]>b[m-1]:
+            return a[n-1]
+        else:
+            return b[m-1]
+    else:
+        i = n-k//2
+        if i<0: i = 0
+        j = m-k//2
+        if j<0: j = 0
+        print("i : ",i,"j : ",j)
+        if a[i]>b[j]:
+            print("A : ",a[:i+1],"B : ",b[:m+1],"k : ",k-n+i)
+            return Rank(a,i,b,m,k-n+i)
+        else:
+            print("A : ",a[:n+1],"B : ",b[:j+1],"k : ",k-m+j)
+            return Rank(a,n,b,j,k-m+j)
+n = int(input())
+a = [int(x) for x in input().split()]
+m = int(input())
+b = [int(x) for x in input().split()]
+k = int(input())
+print(Rank(a,n,b,m,k))
+
+```
