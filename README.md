@@ -10,14 +10,14 @@ def merge(A,low,mid,high):
     k=low
     swaps=0
     while(i<len(l) and j<len(r)):
-        if l[i]<=r[j]:
+        if l[i]<r[j]:
             A[k]=l[i]
             i+=1
         else:
-            swaps+=mid+1-low+i
+            swaps+=mid-i+1
             A[k]=r[j]
             j+=1
-	k+=1
+        k+=1
     while i<len(l):
         A[k]=l[i]
         k+=1
@@ -44,10 +44,9 @@ for i in range(n):
     if s[i]=='1': c+=1
     else: c-=1
     A[i]=c
-
-temp = CIP(A,0,n-1)
-print((n*(n-1)//2)-temp)
-
+A.insert(0,0)
+temp = CIP(A,0,n)
+print((n*(n+1)//2)-temp)
 ```
 
 2>
