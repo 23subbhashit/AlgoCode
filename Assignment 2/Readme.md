@@ -128,6 +128,58 @@ arr = list(map(int, input().split()))
 result = find_rank(arr, 0, n - 1, rank)
 print(arr[result])
 ```
+8>
+```
+import random
+
+def find_rank(arr, l, r, rank):
+    k = partition(arr, l, r)
+    if rank == r - k + 1:
+        return k
+    if rank < r - k + 1:
+        return find_rank(arr, k + 1, r, rank)
+    else:
+        return find_rank(arr, l, k - 1, rank - (r - k + 1))
+
+def partition(arr, p, q):
+    rand_index = random.randint(p, q)%(q-p+1)+p
+    arr[p], arr[rand_index] = arr[rand_index], arr[p]
+    pivot = arr[p]
+    i, j = p + 1, q
+
+    while i <= j:
+        while i <= j and arr[i] <= pivot:
+            i += 1
+        while i <= j and arr[j] > pivot:
+            j -= 1
+        if i <= j:
+            arr[i], arr[j] = arr[j], arr[i]
+            i += 1
+            j -= 1
+
+    i -= 1
+    arr[p], arr[i] = arr[i], arr[p]
+    return i
+def kclose(arr,median,k):
+    d = {}
+    for i in arr:
+        d[i] = abs(i-median)
+    items = sorted(list(d.items()),key = lambda x : (x[1],x[0]))
+    l = []
+    for i in items:
+        l.append(i[0])
+        k-=1
+        if k==0:
+            break
+    return l
+    
+n = int(input("Enter no. of elements : "))
+k = int(input("Enter k value :"))
+arr = list(map(int, input("Array :").split()))
+median = find_rank(arr, 0, n - 1, n//2)
+ans = kclose(arr,median,k)
+print(ans)
+```
 9>
 ```
 def Rank(a,n,b,m,k):
